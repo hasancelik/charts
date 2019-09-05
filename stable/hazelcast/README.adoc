@@ -1,4 +1,4 @@
-include::attributes.adoc[]
+:repo: hazelcast/charts
 
 == Hazelcast
 
@@ -11,24 +11,20 @@ needed for optimal performance.
 
 
 ifeval::["{repo}"=="hazelcast/charts"]
-
 [source,bash]
 ----
 $ helm repo add hazelcast https://hazelcast.github.io/charts/
 $ helm repo update
 $ helm install hazelcast/hazelcast
 ----
-
 endif::[]
 
 
 ifeval::["{repo}"=="helm/charts"]
-
 [source,bash]
 ----
 $ helm install stable/hazelcast
 ----
-
 endif::[]
 
 === Introduction
