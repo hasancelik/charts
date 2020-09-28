@@ -1,0 +1,14 @@
+apiVersion: integrations.sdk.cp4mcm.ibm.com/v1beta1
+kind: NavMenuEntry
+metadata:
+  name: hazelcast-management-center
+spec:
+  target: "ManagementCenter"
+  name: "Hazelcast Management Center"
+  parentId: "administer-mcm"
+  roles:
+    - name: ClusterAdministrator
+    - name: Administrator
+    - name: Operator
+    - name: Viewer
+  url: http://hz-mc-hazelcast-enterprise-mancenter-hz-mc-navmenu."{{ "{{" }} .OpenShiftBaseUrl {{ "}}" }}"

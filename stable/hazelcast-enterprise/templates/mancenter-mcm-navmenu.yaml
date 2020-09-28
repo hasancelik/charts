@@ -1,0 +1,22 @@
+{{- if .Values.mcm.enabled -}}
+apiVersion: integrations.sdk.cp4mcm.ibm.com/v1beta1
+kind: NavMenuEntry
+metadata:
+  name: hazelcast-management-center
+  labels:
+    app.kubernetes.io/name: {{ template "hazelcast.name" . }}
+    helm.sh/chart: {{ template "hazelcast.chart" . }}
+    app.kubernetes.io/instance: "{{ .Release.Name }}"
+    app.kubernetes.io/managed-by: "{{ .Release.Service }}"
+spec:
+  target: "ManagementCenter"
+  name: "Hazelcast Management Center"
+  parentId: "administer-mcm"
+  roles:
+    - name: ClusterAdministrator
+    - name: Administrator
+    - name: Operator
+    - name: Viewer
+  # url: http://hz-mc-hazelcast-enterprise-mancenter-hz-mc-navmenu.apps.yellow-20c.dev.multicloudops.io
+  url: http://{{ template "hazelcast.serviceName" . }}-{{ .Release.Namespace }}.{{ "{{" }} .OpenShiftBaseUrl {{ "}}" }}
+{{- end }}
