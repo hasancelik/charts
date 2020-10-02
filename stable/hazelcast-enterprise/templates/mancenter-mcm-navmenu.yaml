@@ -17,6 +17,5 @@ spec:
     - name: Administrator
     - name: Operator
     - name: Viewer
-  # url: http://hz-mc-hazelcast-enterprise-mancenter-hz-mc-navmenu.apps.yellow-20c.dev.multicloudops.io
-  url: http://{{ template "hazelcast.serviceName" . }}-{{ .Release.Namespace }}.{{ "{{" }} .OpenShiftBaseUrl {{ "}}" }}
+  url: http://{{ template "mancenter.fullname" . }}-{{ .Release.Namespace }}.{{ "{{" }} .OpenShiftBaseUrl {{ "}}" }}/login.html?sso=auto
 {{- end }}

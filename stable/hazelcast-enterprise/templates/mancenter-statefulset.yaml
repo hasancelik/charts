@@ -141,7 +141,26 @@ spec:
           value: {{ .Values.hazelcast.licenseKey }}
         {{- end }}
         - name: MC_INIT_CMD
-          value: "./mc-conf.sh cluster add --lenient=true -H /data -cc /config/hazelcast-client.yaml"
+        {{- if .Values.mcm.enabled }}
+          value: |
+            ./mc-conf.sh cluster add --lenient=true -H /data -cc /config/hazelcast-client.yaml; ./mc-conf.sh oidc configure \
+              -ci sdk.cp4mcm.ibm.com.hz-mc-navmenu.mc-oidcclientregistration \
+              -cs "1234" \
+              -aeu https://cp-console.apps.apps.yellow-20c.dev.multicloudops.io/oidc/endpoint/OP/authorize \
+              -uieu https://cp-console.apps.apps.yellow-20c.dev.multicloudops.io/idprovider/v1/auth/userInfo \
+              -teu https://cp-console.apps.apps.yellow-20c.dev.multicloudops.io/idprovider/v1/auth/token \
+              -jsu https://cp-console.apps.apps.yellow-20c.dev.multicloudops.io/oidc/endpoint/OP/jwk \
+              -is https://cp-console.apps.apps.yellow-20c.dev.multicloudops.io/idauth/oidc/endpoint/OP \
+              -ru http://hz-hazelcast-enterprise-mancenter-hz-mc-navmenu.apps.yellow-20c.dev.multicloudops.io/oidc/auth \
+              -gcn "groups" \
+              -ag "icpusers" \
+              -rwg "icpusers" \
+              -rog "icpusers" \
+              -mog "icpusers"
+        {{- else }}
+          value: |
+            ./mc-conf.sh cluster add --lenient=true -H /data -cc /config/hazelcast-client.yaml
+        {{- end }}
         - name: JAVA_OPTS
           value: "{{ if or .Values.mancenter.licenseKey .Values.mancenter.licenseKeySecretName .Values.hazelcast.licenseKey .Values.hazelcast.licenseKeySecretName }}-Dhazelcast.mc.license=$(MC_LICENSE_KEY){{ end }} {{ if or .Values.mancenter.readinessProbe.enabled .Values.mancenter.livenessProbe.enabled }}-Dhazelcast.mc.healthCheck.enable=true{{ end }} -DserviceName={{ template "hazelcast.serviceName" . }} -Dnamespace={{ .Release.Namespace }} -Dhazelcast.mc.tls.enabled={{ .Values.mancenter.ssl }} -Dmancenter.ssl={{ .Values.mancenter.ssl }} {{ .Values.mancenter.javaOpts }}"
         {{- if .Values.securityContext.enabled }}
