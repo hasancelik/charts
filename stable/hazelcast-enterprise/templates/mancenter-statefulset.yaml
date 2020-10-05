@@ -143,14 +143,14 @@ spec:
         - name: MC_INIT_CMD
         {{- if .Values.mcm.enabled }}
           value: |
-            ./mc-conf.sh cluster add --lenient=true -H /data -cc /config/hazelcast-client.yaml; ./mc-conf.sh oidc configure \
+            ./mc-conf.sh cluster add --lenient=true -H /data -cc /config/hazelcast-client.yaml; ./mc-conf.sh security reset;./mc-conf.sh oidc configure \
               -ci sdk.cp4mcm.ibm.com.hz-mc-navmenu.mc-oidcclientregistration \
               -cs "1234" \
-              -aeu https://cp-console.apps.apps.yellow-20c.dev.multicloudops.io/oidc/endpoint/OP/authorize \
-              -uieu https://cp-console.apps.apps.yellow-20c.dev.multicloudops.io/idprovider/v1/auth/userInfo \
-              -teu https://cp-console.apps.apps.yellow-20c.dev.multicloudops.io/idprovider/v1/auth/token \
-              -jsu https://cp-console.apps.apps.yellow-20c.dev.multicloudops.io/oidc/endpoint/OP/jwk \
-              -is https://cp-console.apps.apps.yellow-20c.dev.multicloudops.io/idauth/oidc/endpoint/OP \
+              -aeu https://cp-console.apps.yellow-20c.dev.multicloudops.io/oidc/endpoint/OP/authorize \
+              -uieu https://cp-console.apps.yellow-20c.dev.multicloudops.io/idprovider/v1/auth/userInfo \
+              -teu https://cp-console.apps.yellow-20c.dev.multicloudops.io/idauth/oidc/endpoint/OP/token \
+              -jsu https://cp-console.apps.yellow-20c.dev.multicloudops.io/oidc/endpoint/OP/jwk \
+              -is https://cp-console.apps.yellow-20c.dev.multicloudops.io/idauth/oidc/endpoint/OP \
               -ru http://hz-hazelcast-enterprise-mancenter-hz-mc-navmenu.apps.yellow-20c.dev.multicloudops.io/oidc/auth \
               -gcn "groups" \
               -ag "icpusers" \
