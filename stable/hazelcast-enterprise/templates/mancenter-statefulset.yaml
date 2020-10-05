@@ -148,7 +148,7 @@ spec:
               -cs "1234" \
               -aeu https://cp-console.apps.yellow-20c.dev.multicloudops.io/oidc/endpoint/OP/authorize \
               -uieu https://cp-console.apps.yellow-20c.dev.multicloudops.io/idprovider/v1/auth/userInfo \
-              -teu https://cp-console.apps.yellow-20c.dev.multicloudops.io/idauth/oidc/endpoint/OP/token \
+              -teu https://cp-console.apps.yellow-20c.dev.multicloudops.io/idprovider/v1/auth/token \
               -jsu https://cp-console.apps.yellow-20c.dev.multicloudops.io/oidc/endpoint/OP/jwk \
               -is https://cp-console.apps.yellow-20c.dev.multicloudops.io/idauth/oidc/endpoint/OP \
               -ru http://hz-hazelcast-enterprise-mancenter-hz-mc-navmenu.apps.yellow-20c.dev.multicloudops.io/oidc/auth \
