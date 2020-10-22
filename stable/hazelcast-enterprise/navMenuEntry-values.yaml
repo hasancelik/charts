@@ -1,0 +1,22 @@
+securityContext:
+  enabled: false
+
+image:
+  repository: "hazelcast/hazelcast-enterprise"
+  tag: "4.0.3"
+
+mcm:
+  enabled: true
+
+hazelcast:
+  licenseKeySecretName: hazelcast-license-key-secret
+
+mancenter:
+  enabled: true
+  securityContext:
+    enabled: false
+  image:
+    repository: "hazelcast/management-center"
+    tag: "4.2020.08"
+  service:
+    type: ClusterIP
