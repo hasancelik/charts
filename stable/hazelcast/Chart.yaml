@@ -20,3 +20,5 @@ maintainers:
 - name: hasancelik
   email: hasan@hazelcast.com
 engine: gotpl
+annotations:
+  artifacthub.io/prerelease: "false"
