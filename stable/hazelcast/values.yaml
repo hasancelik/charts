@@ -39,8 +39,7 @@ hazelcast:
         join:
           kubernetes:
             enabled: true
-            service-name: ${serviceName}
-            namespace: ${namespace}
+            service-dns: "${serviceName}.${namespace}.svc.cluster.local"
         rest-api:
           enabled: true
       jet:

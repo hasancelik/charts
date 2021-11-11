@@ -1,0 +1,7 @@
+rbac:
+  create: false
+env:
+  - name: HZ_NETWORK_JOIN_KUBERNETES_SERVICEDNS
+    value: "test.default.svc.cluster.local"
+mancenter:
+  enabled: false
